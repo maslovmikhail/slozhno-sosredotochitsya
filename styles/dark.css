@@ -9,4 +9,15 @@
     Так стили написанные ниже будут иметь больший вес,
     чем стили в медиазапросе предпочтений пользователя
   */
+  --main-title-color: #db00ff;
+  --title-color: #000028;
+  --second-color: #f1b2ce;
+  --accent-color: #ff0070;
+  --bg-image: url(../images/cover-image-dark.png);
+  --display: block;
+  --section-title-color: #ff0070;
+  --text-shadow-color: #ff0070;
+  --text-shadow-color-2: #ff0070;
+  --first-color: #ff0070;
+  --bt-hover-color: rgba(255, 0, 112, 0.40);
 }
