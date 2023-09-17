@@ -20,6 +20,8 @@
   --text-shadow-color-2: #ff8dcb;
   --first-color: #353430;
   --bt-hover-color: rgba(50, 49, 45, 0.40);
+  --small-gap: 10px;
+  --large-gap: 20px;
 }
 
 @media (prefers-color-scheme: light) {
@@ -35,5 +37,7 @@
     --text-shadow-color-2: #ff8dcb;
     --first-color: #353430;
     --bt-hover-color: rgba(50, 49, 45, 0.40);
+    --small-gap: 10px;
+    --large-gap: 20px;
   }
 }
