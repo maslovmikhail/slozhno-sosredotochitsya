@@ -3,7 +3,7 @@
 .page {
   /* сохраните в разметке и стилях класс page. На его основе работает скрипт. */
   color: var(--text-color);
-  font-family: var(--font, Arial, Helvetica, sans-serif);
+  font-family: var(--font, 'Courier New', Courier, monospace);
   font-size: 18px;
   font-style: normal;
   line-height: 1.3;
@@ -19,7 +19,6 @@
 .header {
   position: relative;
   display: grid;
-  grid-template-rows: repeat(3, auto);
   margin-block-end: 60px;
 }
 
@@ -75,7 +74,7 @@
 
 .header__theme-menu-list {
   display: flex;
-  gap: 10px;
+  gap: var(--small-gap);
 }
 
 .header__theme-menu-button {
@@ -84,10 +83,12 @@
   line-height: 1;
   text-transform: lowercase;
   background-color: transparent;
+  cursor: pointer;
 }
 
 .header__theme-menu-button:hover {
   border: 1px solid var(--bt-hover-color);
+  transition-duration: .3s;
 }
 
 .header__theme-menu-button_active {
@@ -135,64 +136,41 @@
   padding: 0px 20px;
 }
 
-.block-1 {
-  grid-area: block-1;
-}
-
-.block-2 {
-  grid-area: block-2;
-}
-
-.block-3 {
-  grid-area: block-3;
-}
-
-.block-4 {
-  grid-area: block-4;
-}
-
-.block-5 {
-  grid-area: block-5;
-}
-
-.content {
-  grid-area: content;
-}
 
 .why-section {
   display: grid;
   grid-template-columns: 1fr 66%;
-  grid-template-rows: repeat(2, auto);
   grid-template-areas:
-    "title block-1"
-    "title block-2";
-  gap: 20px;
+    "title ."
+    "title .";
+  gap: var(--large-gap);
   margin-block-end: 80px;
 }
 
 .what-section {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  grid-template-rows: repeat(2, auto);
   grid-template-areas:
-    "title . ."
-    "block-1 block-2 block-3";
-  gap: 20px;
+  "title title title";
+  gap: var(--large-gap);
   margin-block-end: 80px;
+}
+
+.grid-title {
+  inline-size: calc((1/3 * 100%) - 20px);
 }
 
 .how-section {
   display: grid;
   grid-template-columns: 1fr 66%;
-  grid-template-rows: repeat(5, auto);
   grid-template-areas:
-    "title subtitle"
-    "title block-1"
-    "title block-2"
-    "title block-3"
-    "title block-4"
-    "title block-5";
-  gap: 20px;
+    "title ."
+    "title ."
+    "title ."
+    "title ."
+    "title ."
+    "title .";
+  gap: var(--large-gap);
   margin-block-end: 80px;
 }
 
@@ -204,17 +182,15 @@
 }
 
 .section__subtitle {
-  grid-area: subtitle;
+  font-size: 18px;
   margin-block-end: 10px;
 }
 
 .section__subtitle-2 {
-  grid-area: subtitle;
   font-size: 18px;
 }
 
 .section__subtitle-3 {
-  grid-area: subtitle;
   margin-block-end: 20px;
   font-size: 18px;
 }
@@ -240,10 +216,6 @@
   border: 1px solid var(--second-color);
 }
 
-.margin-0 {
-  margin: 0;
-}
-
 .font-weight-medium {
   font-weight: 400;
 }
@@ -252,7 +224,6 @@
 
 .pictures-section {
   display: grid;
-  grid-template-rows: auto auto;
   grid-template-areas:
     "subtitle"
     "pictures";
@@ -269,32 +240,31 @@
 .pictures-grid {
   display: grid;
   grid-template-columns: repeat(3, auto);
-  grid-template-rows: repeat(3, auto);
   grid-area: pictures;
-  gap: 20px;
+  gap: var(--large-gap);
 }
 
-img:first-of-type {
+.sunset {
   grid-column: 1/3;
   grid-row: 1/2;
 }
 
-img:nth-of-type(2) {
+.ice-cream {
   grid-column: 3/4;
   grid-row: 1/3;
 }
 
-img:nth-of-type(3) {
+.tape {
   grid-column: 1/2;
   grid-row: 2/4;
 }
 
-img:nth-of-type(4) {
+.books {
   grid-column: 2/3;
   grid-row: 2/3;
 }
 
-img:nth-of-type(5) {
+.street {
   grid-column: 2/4;
   grid-row: 3/4;
 }
@@ -353,25 +323,20 @@ img:nth-of-type(5) {
 
   .header__content {
     margin: 0 20px 183px 0;
-    max-inline-size: 47%;
+    max-inline-size: 47.5%;
   }
 
   .why-section {
-    grid-template-columns: 1fr 65%;
+    grid-template-columns: minmax(112px, 1fr) 65%;
   }
 
   .what-section {
-    grid-template-columns: repeat(3, 1fr);
-    grid-template-rows: repeat(4, auto);
-    grid-template-areas:
-      "title . ."
-      "block-1 block-1 block-1"
-      "block-2 block-2 block-2"
-      "block-3 block-3 block-3";
+    display: flex;
+    flex-direction: column;
   }
 
   .how-section {
-    grid-template-columns: 1fr 65%;
+    grid-template-columns: minmax(112px, 1fr) 2fr;
   }
 
   .footer__title {
@@ -385,7 +350,6 @@ img:nth-of-type(5) {
 @media (width < 376px) {
   .header {
     margin-block-end: 40px;
-    /* padding: 10px; */
   }
 
   .header::before {
@@ -430,14 +394,11 @@ img:nth-of-type(5) {
     margin-block-end: 50px;
   }
 
+  .grid-title {
+    inline-size: 100%;
+  }
+
   .what-section {
-    grid-template-columns: repeat(3, 1fr);
-    grid-template-rows: repeat(4, auto);
-    grid-template-areas:
-      "title title title"
-      "block-1 block-1 block-1"
-      "block-2 block-2 block-2"
-      "block-3 block-3 block-3";
     margin-block-end: 50px;
   }
 
@@ -454,7 +415,7 @@ img:nth-of-type(5) {
   .pictures-grid {
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    gap: var(--small-gap);
   }
 
   .pictures-section {
